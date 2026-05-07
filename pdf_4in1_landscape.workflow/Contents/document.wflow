@@ -61,7 +61,12 @@
 					<key>COMMAND_STRING</key>
 					<string>for f in "$@"
 do
-    /usr/local/bin/python3 /Users/vinayak/IdeaProjects/python/combine-PDF-4in1/combine_4in1_landscape.py "$f"
+    output=$(/usr/local/bin/python3 /Users/vinayak/IdeaProjects/python/combine-PDF-4in1/combine_4in1_landscape.py "$f" 2&gt;&amp;1)
+    exit_code=$?
+    if [ "$exit_code" -ne 0 ]; then
+        /usr/bin/osascript -e 'on run argv' -e 'display alert "4-in-1 failed" message (item 1 of argv) as critical' -e 'end run' "$output"
+        exit 0
+    fi
 done
 </string>
 					<key>CheckedForUserDefaultShell</key>
@@ -282,7 +287,7 @@ done
 		<key>backgroundColorName</key>
 		<string>systemGreenColor</string>
 		<key>inputTypeIdentifier</key>
-		<string>com.apple.Automator.fileSystemObject.PDF</string>
+		<string>com.apple.Automator.fileSystemObject</string>
 		<key>outputTypeIdentifier</key>
 		<string>com.apple.Automator.nothing</string>
 		<key>presentationMode</key>
@@ -290,7 +295,7 @@ done
 		<key>processesInput</key>
 		<false/>
 		<key>serviceInputTypeIdentifier</key>
-		<string>com.apple.Automator.fileSystemObject.PDF</string>
+		<string>com.apple.Automator.fileSystemObject</string>
 		<key>serviceOutputTypeIdentifier</key>
 		<string>com.apple.Automator.nothing</string>
 		<key>serviceProcessesInput</key>

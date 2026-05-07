@@ -1,18 +1,22 @@
 # Combine PDF 4-in-1
 
-Small Python tools and macOS Finder Quick Actions for combining PDF pages into a 2x2 layout.
+Small Python tools and macOS Finder Quick Actions for combining PDF, Word, and PowerPoint files into a 2x2 layout.
 
 ## What It Does
 
 - `combine_4in1_portrait.py` creates a portrait A4 output PDF.
 - `combine_4in1_landscape.py` creates a landscape A4 output PDF, better for wide slides or landscape PDFs.
-- Each output page contains up to 4 original PDF pages.
-- Output files are created beside the input PDF.
+- Supported inputs: `.pdf`, `.doc`, `.docx`, `.ppt`, and `.pptx`.
+- Word and PowerPoint files are converted to a temporary PDF first, then combined.
+- Each output page contains up to 4 original pages or slides.
+- Output files are created beside the input file.
 
 ## Requirements
 
 - Python 3
 - PyMuPDF
+- Microsoft PowerPoint for PowerPoint conversion
+- Microsoft Word or Pages for Word conversion
 
 Install dependencies:
 
@@ -26,6 +30,8 @@ Portrait A4:
 
 ```bash
 python3 combine_4in1_portrait.py input.pdf
+python3 combine_4in1_portrait.py input.docx
+python3 combine_4in1_portrait.py input.pptx
 ```
 
 This creates:
@@ -38,6 +44,8 @@ Landscape A4:
 
 ```bash
 python3 combine_4in1_landscape.py input.pdf
+python3 combine_4in1_landscape.py input.docx
+python3 combine_4in1_landscape.py input.pptx
 ```
 
 This creates:
@@ -61,7 +69,7 @@ To install a workflow into macOS:
 
 After installing, use it from Finder:
 
-1. Right-click a PDF file.
+1. Right-click a PDF, Word, or PowerPoint file.
 2. Open `Quick Actions`.
 3. Select `pdf_4in1` or `pdf_4in1_landscape`.
 
@@ -71,6 +79,7 @@ The combined PDF will be created in the same folder as the original file.
 
 - Use the portrait workflow for normal portrait documents.
 - Use the landscape workflow for wide PDFs, lecture slides, and landscape documents.
+- macOS may ask for permission the first time Automator controls Microsoft Office or Pages.
 - The workflow files call the Python scripts from this project folder, so keep the project at:
 
 ```text

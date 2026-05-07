@@ -21,6 +21,10 @@
 			<key>NSSendFileTypes</key>
 			<array>
 				<string>com.adobe.pdf</string>
+				<string>com.microsoft.word.doc</string>
+				<string>org.openxmlformats.wordprocessingml.document</string>
+				<string>com.microsoft.powerpoint.ppt</string>
+				<string>org.openxmlformats.presentationml.presentation</string>
 			</array>
 		</dict>
 	</array>
